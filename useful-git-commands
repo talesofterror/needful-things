@@ -1,0 +1,9 @@
+Useful Git Commands 
+
+git remote add <#name> <#URL>
+  #This adds a new remote destination
+
+git push --set-upstream <#name> main
+  # This is used when intiating a new repository created on my computer
+  # it sets, for all time presumably, the "main" github (remote) branch
+  # as the branch I'll be pushing to when i use the "git push" 
