@@ -1,0 +1,80 @@
+
+
+Flex Box 
+~~~
+
+display: flex; 
+	will make the contents of the css element display with flex specifications 
+	
+flex: 1;
+	shorthand for flex: 1 1 0% (or is it 0 1 auto? Fuck)
+	
+flex-grow: <#value> 
+	the first value defined with the flex shorthand
+	determines how much a flex item will grow in relation to other items
+	can be defined individually
+	
+flex-shrink: <#value> 
+	the second value defined with the flex shorthand 
+	determines how much a flex item will shrink in relation to other items 
+	can be defined individually
+
+flex-basis: <#value>%
+	the third value defined with the flex shorthand 
+	determines the initial value on which flex-grow and flex-shrink are based on
+	requires a percentage sign (%) 
+	
+gap: <#value>px
+	determines the amount of space between flex-items in all directions 
+
+column-gap: <#value>px
+	determines the amount of space between columns of flex-items
+	
+row-gap: <#value>px
+	determines the amount of space between rows of flex-items
+	
+flex-wrap: <[wrap, nowrap]>
+	tells the flex container whether or not to start a new line when the flex-items
+	reach the end of the container
+	
+flex-direction: <[column, row, column-reverse, row-reverse]> 
+	determinesthe direction in which the flex-items are added
+	main axis: the direction in which the items are added 
+	cross axis: the direction perpendicular to the main axis
+	
+justify-content: <[center, flex-start, flex-end, etc.]> 
+	determines how the flex items are distributed within the available space
+	acts on the main axis 
+
+align-items: <[center, flex-start, flex-end, baseline, etc. (?)]>
+	detemined how the flex items are distributed within the available space
+	acts on the cross-axis
+	
+align-self: <[center, flex-start, flex-end, baseline, etc. (?)]>
+	placed within a css element to specify it's own specific "align-items" value 
+	for instance: 
+		.container { display: flex; align-items: center }
+		.container div { align-self: flex-start }
+
+align-content: <[center, flex-start, flex-end, space-between, space-around, 
+		stretch, space-evenly]>
+	tells the flex container to how to distribute items along the main axis 
+	use when there is multiline wrapping of flex-items 
+	the direction of the cross axis (ie. flex-direction) determines axis of distribution
+	
+justify-content: <[center, flex-start, flex-end, space-between, space-around, space-evenly]> 
+	tells the flex container how to distribute items along the cross-axis
+	no stretch option? 
+
+Separating items with margin
+	We can separate an element from others along the main axis by setting the 
+	margin of that individual element. For instance, with a row of 5 divs, 
+	setting the fourth div to "margin: auto" will make the div's margin fill the
+	available space between itself and the container edge, offset by any elements
+	that come after it 
+	
+
+	
+
+	
+
