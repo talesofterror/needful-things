@@ -6,3 +6,20 @@ Extract audio from video
 
 ffmpeg -i input-video.avi -vn -acodec copy output-audio.aac 
 
+Save frames to file
+
+ffmpeg -i <filename>_%04d.png <newfilename>.gif 
+
+Save GIF with pallete, at 20 frames per second
+
+ffmpeg -i input.gif -vf "fps=20,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" output.gif
+	- change to "paletteuse=dither=<dithering type>" 
+	- this example uses -vf, which I'm pretty sure stands for "videofilter" 
+		which uses a string to set properties of the videofilter
+	- splits the workload into two streams within videofilter: [s0] and [s1]
+	- [s0] calls the "palettegen" command and sends it to [p]
+	- [s1] takes the [p] value and puts it into the "paletteuse" command
+	- "paletteuse" normally called by using the -lavfi flag, which I know nothing of 
+	- complicated command that I don't fully understand
+
+
