@@ -1,16 +1,21 @@
 
 USEFUL FFMPEG COMMANDS
 
+~~~
 
-Extract audio from video 
+EXTRACT AUDIO FROM VIDEO 
 
 ffmpeg -i input-video.avi -vn -acodec copy output-audio.aac 
 
-Save frames to file
+**
+
+SAVE FRAMES TO FILE
 
 ffmpeg -i <filename>_%04d.png <newfilename>.gif 
 
-Save GIF with pallete, at 20 frames per second
+**
+
+SAVE GIF WITH PALLETE, AT 20 FRAMES PER SECOND
 
 ffmpeg -i input.gif -vf "fps=20,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" output.gif
 	- change to "paletteuse=dither=<dithering type>" 
@@ -22,4 +27,21 @@ ffmpeg -i input.gif -vf "fps=20,split[s0][s1];[s0]palettegen[p];[s1][p]paletteus
 	- "paletteuse" normally called by using the -lavfi flag, which I know nothing of 
 	- complicated command that I don't fully understand
 
+**
 
+CLIPPING A VIDEO AT CERTAIN TIMES (COPIED FROM STACK OVERFLOW, USER RGOV)
+
+ffmpeg -ss 30 -i input.wmv -c copy -t 10 output.wmv
+	In the above command, the timestamps are in seconds (s.msec), but timestamps can also be in 
+	HH:MM:SS.xxx format. The following is equivalent:
+ffmpeg -ss 00:00:30.0 -i input.wmv -c copy -t 00:00:10.0 output.wmv
+	Note that -t is an output option and always needs to be specified after -i.
+	Some tips:
+	For older ffmpeg versions, if you use -ss after -i, you get more accurate seeking at the expense
+	of a slower execution altogether. See also: Seeking with FFmpeg
+
+	You can use -to instead of -t to specify the timestamp to which you want to cut. So, instead 
+	of -i <input> -ss 30 -t 10 you could also do -i <input> -ss 30 -to 40 to achieve the same thing.
+
+	If your ffmpeg does not support -c, or -to, it is likely very outdated. Compile a new version 
+	yourself or download a static build from their homepage. It's really not complicated.
