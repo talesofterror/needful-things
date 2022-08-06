@@ -9,6 +9,12 @@ ffmpeg -i input-video.avi -vn -acodec copy output-audio.aac
 
 **
 
+REPLACE AUDIO IN VIDEO
+
+ffmpeg -i v.mp4 -i a.wav -c:v copy -map 0:v:0 -map 1:a:0 new.mp4
+
+**
+
 SAVE FRAMES TO FILE
 
 ffmpeg -i <filename>_%04d.png <newfilename>.gif 
