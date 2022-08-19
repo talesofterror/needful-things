@@ -38,16 +38,36 @@ ffmpeg -i input.gif -vf "fps=20,split[s0][s1];[s0]palettegen[p];[s1][p]paletteus
 CLIPPING A VIDEO AT CERTAIN TIMES (COPIED FROM STACK OVERFLOW, USER RGOV)
 
 ffmpeg -ss 30 -i input.wmv -c copy -t 10 output.wmv
-	In the above command, the timestamps are in seconds (s.msec), but timestamps can also be in 
-	HH:MM:SS.xxx format. The following is equivalent:
+	In the above command, the timestamps are in seconds (s.msec), but 
+	timestamps can also be in HH:MM:SS.xxx format. The following is equivalent:
 ffmpeg -ss 00:00:30.0 -i input.wmv -c copy -t 00:00:10.0 output.wmv
 	Note that -t is an output option and always needs to be specified after -i.
 	Some tips:
-	For older ffmpeg versions, if you use -ss after -i, you get more accurate seeking at the expense
-	of a slower execution altogether. See also: Seeking with FFmpeg
+	For older ffmpeg versions, if you use -ss after -i, you get more accurate 
+	seeking at the expense of a slower execution altogether. See also: Seeking 
+	with FFmpeg
 
-	You can use -to instead of -t to specify the timestamp to which you want to cut. So, instead 
-	of -i <input> -ss 30 -t 10 you could also do -i <input> -ss 30 -to 40 to achieve the same thing.
+	You can use -to instead of -t to specify the timestamp to which you want to 
+	cut. So, instead of -i <input> -ss 30 -t 10 you could also do 
+	-i <input> -ss 30 -to 40 to achieve the same thing.
 
-	If your ffmpeg does not support -c, or -to, it is likely very outdated. Compile a new version 
-	yourself or download a static build from their homepage. It's really not complicated.
+	If your ffmpeg does not support -c, or -to, it is likely very outdated. 
+	Compile a new version yourself or download a static build from their 
+	homepage. It's really not complicated.
+
+**
+
+OFFSET FRAMES TO MAINTAIN SEAMLESS LOOP 
+
+ffmpeg -i in -vf "split=2[a][b];[a]trim=start_frame=20,setpts=N/FR/TB[a];
+[b]trim=end_frame=20,setpts=N/FR/TB[b];[a][b]concat" out
+	I found this in a youtube video and have no idea if it works.
+
+**
+
+SAVE IMAGES WITH ALPHA USING ALPHA CAPABLE VIDEO CODEC (AVI)
+
+ffmpeg -i in -vcodec qtrle out.mov
+ffmpeg -i in -vcodec ffvhuff out.avi
+ffmpeg -i in -vcodec huffyyuv out.avi
+	Seems to work
