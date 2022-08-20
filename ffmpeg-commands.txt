@@ -15,9 +15,32 @@ ffmpeg -i v.mp4 -i a.wav -c:v copy -map 0:v:0 -map 1:a:0 new.mp4
 
 **
 
+REMOVE AUDIO FROM FILE
+
+ffmpeg -i in -c copy -an out
+	Take a video [in], copies it's content and skips the inclusion of the audio
+	stream. 
+
+**
+
 SAVE FRAMES TO FILE
 
 ffmpeg -i <filename>_%04d.png <newfilename>.gif 
+
+**
+
+CONCAT FRAMES IN REVERSE
+
+	- for a video with no audio, do:
+
+ffmpeg -i in -filter_complex "[0:v]reverse,fifo[r];[0:v][r] concat
+	=n=2:v=1 [v]" -map "[v]" out
+
+	- to do the same for a video with audio, do:
+
+ffmpeg -i in -filter_complex "[0:v]reverse,fifo[r];[0:v][0:a][r] [0:a]
+	concat=n=2:v=1:a=1 [v] [a]" -map "[v]" -map "[a]" out
+
 
 **
 
