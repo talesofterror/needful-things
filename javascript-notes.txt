@@ -1,0 +1,189 @@
+"Comparisons" = [ =, <, >, <=, >=, != ]
+	return true or value, 1 or 0 
+
+Comparing Strings: 
+	Returns true or false based on the alphabetical order of the string values beginning at the first index.
+	A is the lowest value and Z is the highest, though lowers letter all go after capital "Z", such that 
+	lowercase "z" is the hiest value above capital "Z" 
+
+Comparing values of different types
+	the values are converted to numbers, such that: 
+		alert("2" < 1) returns false because "2" becomes 2, which is not less than 1 
+		alert("01" == 1) returns true because it is comparing 1 with 1 
+	
+	for boolean values, true becomes 1 and false becomes 0, such that: 
+		alert(true == 0) is false becomes true is 1
+		alert(false ==0) is true because false is 0 
+
+	It possible sometimes for two values to be equal but for them to evaluate to booleans of different values
+	for instance: 
+		let a = 0
+		alert( Boolean(a) ) // false 
+		
+		let b = "0" 
+		alert( Boolean(b) ) // true
+
+		alert(a == b) // true?! 
+
+Strict equality
+	the  [ == ] operator cannot differentiate between booleans of different values, such as 
+	the difference between 0 and false. For instance: 
+		alert(0 == false) // true
+	same with an empty string. This is because the [ == ] operator converts values to numbers
+	If we want to differentiate between [0] and [false] we need to use the strict equality
+	operator: [ ===] 
+	
+	the strict equality compares values with converting them from their native type to a number
+	ie. without type conversion. With the strict equality operator we get: 
+	
+		alert(0 === false) // false
+		alert( 0 === "0" ) // false
+
+	There is also a strict non-equality operator, [ !== ] (anologous to [!=], which returns true
+	if the values are of different types. 
+
+Comparing with null and undefined
+	Behavior exihibited by comparing null and undefined is non-intuitive. 
+	null and undefined are only equal to each other. 
+	null and undefined are of different types, such that a strict equality check yields:
+		alert(null === undefined) // false 
+	
+	When converted to a number using Number(), [ null ] becomes [0] and [ undefined ] becomes [NaN]. 
+	HOWEVER! When compared using the regular equality check it yields
+		alert(null == undefined) // true!
+	even though they are not equal when converted to numbers. Weird. 
+
+	Things get weirder when using other comparison operators with null and undefined. For instance: 
+		alert( null > 0 ) // false
+		alert( null == 0 ) // false
+		alert( null >=0 ) // true
+	In the above functions, the last one evals to true, meaning null is suppsoed to be greater than
+	or equal to 0. However, the first expression evals to true 
+
+	This is because equality checks and comparisons work differently, and when used in an equality
+	check, null and undefined will only ever equal each other. That's why [ null == 0 ] is false
+
+	[ undefined ] will return false for all comparisons.
+		alert( undefined > 0 ) //false 
+		alert( undefined < 0 ) //false 
+		alert( undefined == 0 ) //false 
+	because [undefined] yields [NaN] when converted to a number and can only be equal to null. 
+
+
+1 true
+2 false
+3 false -- wrong. "2" > "12" is true bc both values are strings, and are thus evald using dictionary method. 
+4 true
+5 false 
+6 false 
+7 false
+
+
+
+IF STATEMENTS
+
+	if (condition1) { }
+	// block of code to execute if condition 1 is true
+	else if (condition2) { }
+	// block of code to execute if condition1 is false and condition2 is true
+	else { }
+	// block of code to execute if condition1 and condition2 are both false 
+
+
+LOGICAL OPERATORS ( [ || (OR), && (AND), ! (NOT), ?? (nullish coalescing) )
+
+	OR ( || )
+
+	in classical programming, OR only evals booleans values. In Javascript, you can also return values. 
+	
+	for booleans values, [ || ] returns true if any of the values are true, false if both values are false. 
+	For instance: 
+		true || true // true
+		true || false // true
+		false || true // true
+		false || false // true
+		0 || 1 // true
+		0 || 0 // false, etc. 
+	
+	If a value is not a boolean but a string, the value is converted to a boolean for the eval. 
+		if (1||0) { code }
+			//this code will run because the 1 is evaled to true and 0 to false. 
+		if (0||0) { code }
+			//this code will not run because the 0 is a false value, making both 
+			boolean values false. Use [ || ] to in an if statement to determine if any of the given 
+			values evals to "true" 
+
+	For multiple values, OR returns the first true value, or the last value given if all values are false. 
+	For instance: 
+		alert("string1" || "string2" || "string") // returns ["string1"]
+		alert( null || undefined || 0) // returns 0
+	
+	When using variables, the value of the variable is converted to boolean, and if it evals to true the 
+	value of the variable is returned, such that: 
+		let firstName = "" 
+		let lastName = ""
+		let userName = "RickSanchez"
+		
+		alert(firstName || lastName || userName || "Anonymous")
+
+		// The above returns [ "RickSanchez" ], but would return [ "Anonymous" ] if userName were empty
+		as firstName and userName are. 
+
+
+	When use with values that do something, such as an assignment or a function call, the action will occur 
+	if it is not preceded by a value that evals to true, or if it is the final value chain of false values. 
+	For instance: 
+		alert( true || function() ) // will not call function() bc true value preceeded it. 
+		alert( false|| function() ) // will call function() because it is the only true value; 
+		alert ( "" || function() ) // will call function() because the empty string evals to 0, or false.
+
+
+	AND ( && ) 
+
+	In classical programming, AND returns true if both values eval to true. 
+		true && true // true
+		false && true // false
+		false && false // false 
+
+	In javascript, it also returns THE FIRST FALSE VALUE, the inverse of the OR operator: 
+		alert( true || 1 || 0 || function() ) 
+		// This will return 0, and the function will not be called. 
+		alert( true || 1 || "hello" || function() )
+		// will call the function because all values are true and it is the final item. 
+
+	AND operations are evaluated before OR operators, such that:
+		value1 && value2 || value3 && value4
+	Can be understoof as: 
+		(value1 && value2) || (value3 && value4) 
+
+
+	CAVEAT
+	This website I'm on suggests that using && and || operators instead of if statements is generally a bad
+	idea due to it's being less readable. 
+
+
+	
+	NOT ( ! )
+	
+	Accepts a single argument and returns a booleans of the opposite value to the boolean which the argument
+	evaluated to. For instance~ 
+		alert( !true ) // is false because true evals to true.
+		alert ( !0 ) // returns true because 0 evals to false.
+
+	A DOUBLE NOT [ !! ] converts a value to boolean such that
+		alert ( !!0 ) 
+		// returns false because !0 is true, but the extra exclamation mark returns the opposite. 
+
+	the Boolean() function will to the same as the double NOT but in a more readable way. 
+
+	NOT had the highest precedence of all the logical operators. Not sure what that means right now.  
+
+	
+test: 
+write an if condition to check that age is between 14 and 90 
+	if (age >= 14 && age <= 90) { execute code }
+write an if condition to check that the age is NOT between 14 and 90
+	if (age <= 14 && age >= 90) { execute code }
+	variant using NOT (!):
+	if (!(age >= 14 && age >= 90) { execute code } 
+
