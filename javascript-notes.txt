@@ -213,4 +213,39 @@ other than "admin" say "I don't know you". The correct password is "TheMaster", 
 	    }
 
 
-~vim test! 
+FURTHERMORE: 
+
+If you want to test a single variable multiple times using a logical operator you have to 
+explicitly test against the variable each time. For Instance: 
+	if (x === 5 || 6 || 7 || 8)
+	// will always return true because it checks x only once, returns that as false, 
+	then checks all the numbers (without reference to x), 
+
+	to check the value of x against multiple values, you have to check each invidual 
+	explcitily check against x each time, like so: 
+	if (x === 5 || x===6 || x === 7 || x ===8)
+
+SWITCH
+
+Switch statements can be used when evaluation against one condition. The syntax is: 
+
+	switch (variable) {  // 
+
+	case x: 		// if variable = x do
+		[ code block]
+		break;
+	case y: 		// if variable = y do
+		[code block]
+		break;
+	default: 		// otherwise do
+		[code block]
+	}
+
+	
+TERNARY OPERATOR
+
+The ternary operator is a shorter way of writing a simple conditional with one condition
+and two possible actions. The syntax is: 
+	x === condition ? [ function1() ] : [ function2() ]
+
+	// it can be read as: if x === condition, run function1(), else run function2()
