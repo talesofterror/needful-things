@@ -186,4 +186,31 @@ write an if condition to check that the age is NOT between 14 and 90
 	if (age <= 14 && age >= 90) { execute code }
 	variant using NOT (!):
 	if (!(age >= 14 && age >= 90) { execute code } 
+write a prompt that asks for a username, and if the input is "admin" prompt for a password. 
+If the username input is empty or escape is pressed, alert "canceled", or, if it's something 
+other than "admin" say "I don't know you". The correct password is "TheMaster", which says
+"Welcome" if entered and "Wrong password" for anything else.
+	
 
+	let userPrompt = prompt("Enter Login Name: ")
+	let userPromptRepeat = userPrompt
+
+	if (userPrompt == "Admin") {
+	  let pwPrompt = prompt("Enter password: ")
+
+	  if (pwPrompt == "TheMaster") {
+	    alert("Welcome!")
+	  } else if (pwPrompt == null) {
+	    alert("Canceled")
+	  } else { 
+	    alert("Wrong password.") 
+	    userPrompt = prompt("Enter Login Name: ")
+	    }
+	} else if (userPrompt == null) { 
+	    alert("Canceled") 
+	  } else { 
+	    alert("I don't know you") 
+	    }
+
+
+~vim test! 
