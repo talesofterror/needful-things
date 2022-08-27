@@ -1,0 +1,164 @@
+
+
+notes on this sine wave example from processing.org by Daniel Shiffman: 
+
+	int xspacing = 16;   // How far apart should each horizontal location be spaced
+	int w;              // Width of entire wave
+
+	float theta = 0.0;  // Start angle at 0
+	float amplitude = 75.0;  // Height of wave
+	float period = 500.0;  // How many pixels before the wave repeats
+	float dx;  // Value for incrementing X, a function of period and xspacing
+	float[] yvalues;  // Using an array to store height values for the wave
+
+	void setup() {
+	  size(640, 360);
+	  w = width+16;
+	  dx = (TWO_PI / period) * xspacing;
+	  yvalues = new float[w/xspacing];
+	}
+
+	void draw() {
+	  background(0);
+	  calcWave();
+	  renderWave();
+	}
+
+	void calcWave() {
+	  // Increment theta (try different values for 'angular velocity' here
+	  theta += 0.02;
+
+	  // For every x value, calculate a y value with sine function
+	  float x = theta;
+	  for (int i = 0; i < yvalues.length; i++) {
+	    yvalues[i] = sin(x)*amplitude;
+	    x+=dx;
+	  }
+	}
+
+	void renderWave() {
+	  noStroke();
+	  fill(255);
+	  // A simple way to draw the wave with an ellipse at each location
+	  for (int x = 0; x < yvalues.length; x++) {
+	    ellipse(x*xspacing, height/2+yvalues[x], 16, 16);
+	  }
+	}
+
+
+
+~~~
+
+GLOBAL PARAMS
+
+It starts by setting the number of pixels between dots 
+
+	int xspacing = 16;
+
+A value is created to store the width of the wave
+
+	int w;
+
+We set the angle to start the dot at
+
+	float theta = 0.0;
+
+We set the height (amplitude of the wave) 
+
+	float amplitude = 75;
+
+Set the speed of the wave
+
+	float period = 500
+
+Create a variable to hold the incrementing value for "X"
+
+	float dx; 
+
+Create an array for store the Y values of each dot
+	
+	float[] yvalues;
+
+
+SETUP()
+
+Set the size: 
+
+	size(640, 360) 
+
+Assign width w to the width of the sketch plus 16
+
+	w = width + 16;
+
+	// 640 -16 = 624
+	// why 16? why 624?
+
+Set the incrementing value for X (dx) to the speed of the wave divided by TWOPI
+Multiply the result by the spacing between the dots 
+
+	dx = (TWO_PI / period) * xspacing
+
+	// (6.28 / 500) * 16 = 
+	// (0.01256) * 16 = 
+	// 0.20096 
+
+Set the size of the yvalues array to the value of the space between dots 
+divided by the width of the sketch plus 16.
+
+	yvalues = new float[w/xspacing] 
+	
+	// 624 / 16 = 
+	// meaning 39 dots?
+
+
+CALCWAVE()
+
+increment the angle of the dot by 0.02 each frame
+
+	theta += 0.02 
+
+	// very small value
+
+create a variable to store the value of the angle 
+
+	float x = theta
+
+create a loop the size of the array holding the y location of the dots
+
+	for (int = 0; i < yvalues.length; i++) {
+
+for each dot, set it's y position to the result of the sine of the current 
+angle theta value (which increases with each frame by 0.02) then multiply by 
+the amplitude. 
+
+	yvalues[i] = sin(x)*amplitude
+
+Within the loop, increment x (which begins the loop assigned to the value of
+theta that frame) by the result of multiplying the product of TWO_PI by the 
+wave's period by the amplitude of the wave
+
+	x += dx 
+
+
+RENDERWAVE()
+
+Make the dots borderless 
+
+	noStroke();
+
+Make the dots white 
+
+	fill(255);
+
+Create a loop starting at index zero, the size of the number of yvalues. 
+For each loop, create an ellipse with the x location at the loop index 
+multiplied by the space between dots (16), and at the y location at the 
+height of the sketch divided by 2 plus the current yvalue index. make the 
+radius equal on both sides to make a circle
+
+	ellipse(x*xspacing, height/2+yvalues[x], 16, 16)
+
+DRAW() 
+
+Set the background, call the wave calculation, then call the render function
+
