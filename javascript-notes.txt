@@ -246,6 +246,7 @@ TERNARY OPERATOR
 
 The ternary operator is a shorter way of writing a simple conditional with one condition
 and two possible actions. The syntax is: 
+
 	x === condition ? [ function1() ] : [ function2() ]
 
 	// it can be read as: if x === condition, run function1(), else run function2()
@@ -261,8 +262,49 @@ I have to finish this calendar for them.
 	select.addEventListener('change', () => {
 	  const choice = select.value;
 
-	  // ADD CONDITIONAL HERE
+	// ADD CONDITIONAL HERE
+	
+		// 30 days: 
+		// April || June || September || November
+		//
+		// 31 days: 
+		// January || March ||May || July || August || October || December 
+		// 
+		// 28 days: 
+		// February
 
+	// OPTION ONE: SWITCH STATEMENT
+
+	let days;
+
+	switch(choice) {
+	
+	case "January" || "March" || "May" || "July" || "August" || "October" || "December":
+		days = 31;
+		break;
+	case "April || "June" || "September" || "November": 
+		days = 30;
+		break;
+	case default: 
+		days = 28;
+	}
+
+
+	// OPTION TWO: IF STATEMENT 
+
+	let days
+
+        if (choice == "April" || choice == "June" || choice == "September" || choice == "November") {
+                days = 30
+        } else if (choice == "January" || choice == "March" || choice == "May" || choice == "July" 
+	  || choice == "August" || choice == "October" || choice == "December") {
+	        days = 31
+          } else {
+                days = 28
+          }
+
+	
+	
 	  createCalendar(days, choice);
 	});
 
@@ -277,3 +319,173 @@ I have to finish this calendar for them.
 	}
 
 	createCalendar(31,'January');
+
+
+Make a ternary function that takes a color choice and applies it to the style. 
+
+	const select = document.querySelector('select');
+	const html = document.querySelector('.output');
+
+	select.addEventListener('change', () => {
+		const choice = select.value;
+
+		// ADD SWITCH STATEMENT
+
+		switch (choice) {
+		
+		case "white":
+			update("white", "black");
+			break;	
+		case "black":
+			update("black", "white");
+			break;
+		case "purple":
+			update("purple", "green");
+			break;
+		case "yellow":
+			update("yellow", "blue");
+			break;
+		case "psychedelic":
+			update("gray", "red");
+			break;
+		}
+	});
+
+	function update(bgColor, textColor) {
+	html.style.backgroundColor = bgColor;
+	html.style.color = textColor;
+}
+
+
+
+Make a conditional statement that responds to the season entered and shows a different
+text for each one. 
+
+	let season = 'summer';
+	let response;
+
+	// Add your code here
+
+	switch (season) {
+		case "summer": 
+			response = "Summertime, and the living is easy";
+			break; 
+		case "winter":
+			response = "So... cold... Blood freezing.";
+			break;
+		case "spring": 
+			response = "Flowers are blooming";
+			break;
+		case "fall": 
+			response = "Back to school.";
+			break;
+		default: 
+			response = "I don't know what season it is!";
+	}
+
+	// Don't edit the code below here!
+
+	section.innerHTML = ' ';
+	let para1 = document.createElement('p');
+	para1.textContent = response;
+	section.appendChild(para1);
+
+
+Make a conditional statement that changes the message depending on the rang eof your score. 
+
+	let response = "";
+	let score = 75;
+	let machineActive = false;
+
+	// Add your code here
+
+
+	// IF STATEMENT
+
+	if (machineActive) {
+		response = "The machine is on"
+		if (score <= 19){
+			response = "That was a terrible score -- Total fail!"
+		} else if (score >=20 && score <= 39) {
+			response = "You know some things, but it\'s a pretty bad score."
+		} else if (score >= 40 && score <= 69) {
+			response = "You did a passable job, not bad!"
+		} else if (score >= 70 && score <= 89) {
+			response = "That\'s a great score, you really know your stuff!"
+		} else if (score >= 90 && score <= 100) {
+			response = "What an amazing score! Did you cheat? Are you for real?"
+		} else {
+			response = "This is not possible. An error has occurred."
+		}
+	} else {
+		response = "Please switch the machine on"
+	}
+
+
+	// SWITCH STATEMENT
+		
+	switch (true) {
+	case score <= 19: 
+		response = "That was a terrible score -- Total fail!";
+		break;
+	case score >= 20 && score <= 39:
+		response = "You know something, but it\'s a pretty bad score.";
+		break;
+	case score >=40 && score <= 69:
+		response = "You did a passable job, not bad!";
+		break; 
+	case score >=70 && score <= 89:
+		response = "That\'s a great score, you really know your stuff";
+		break;
+	case score >=90 && score <= 100:
+		response = "What an amazing score! Did you Cheat? Are you for real?";
+		break;
+	default || score === "": 
+		response= "This is not possible. An error has occurred.";
+	}
+
+	// Don't edit the code below here!
+
+	section.innerHTML = ' ';
+	let para1 = document.createElement('p');
+	let para2 = document.createElement('p');
+
+	para1.textContent = `Your score is ${ score }`;
+	para2.textContent = response;
+
+	section.appendChild(para1);
+	section.appendChild(para2);
+
+
+Create a condition which determines if the machine is on, and checks a password if it is. 
+
+	let machineActive = true;
+	let pwd = 'cheese';
+
+	let machineResult;
+	let pwdResult;
+
+	// Add your code here
+
+	if (machineActive) {
+		machineResult = "The machine is on."
+		pwd === "cheese" ? 
+			pwdResult = "Login successful!" 
+			: pwdResult = "Incorrect password!"
+	} else {
+		machineResult = "The machine is off"
+	}
+
+	// Don't edit the code below here!
+
+	section.innerHTML = ' ';
+	let para1 = document.createElement('p');
+	let para2 = document.createElement('p');
+
+	para1.textContent = machineResult;
+	para2.textContent = pwdResult;
+
+	section.appendChild(para1);
+	section.appendChild(para2);
+
+
