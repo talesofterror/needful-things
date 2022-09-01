@@ -598,11 +598,130 @@ Strings: template literals
 	backticks are used to allow the use of variables within a string
 	such as: 
 	
-	greeting = `Hello, my name is ${name}`
+	greeting = `Hello, my name is ${name}
 
 
+FUNCTIONS: 
+
+In Javascript are defined like this: 
+	
+	function functionName (parameter) {
+	[code]
+	}
+
+and are invoked by calling them like this: 
+
+	functionName(argument)
 
 
+This is a user defined function, but functions built in to the browser or a software package
+may come with it's own functions. 
 
+When a function is part of an object it is called a method. They won't tell me about this yet
+though. 
+
+	ANONYMOUS FUNCTION AND ARROW FUNCTIONS
+
+You can make a function that doesn't have a name (an anonymous function). That takes the form
+of: 	
+	(function () {
+	alert("hello")
+	}}
+
+An anonymous function can be used when another function takes a function as an argument. 
+
+	function logKey(event) {
+	console.log(`You pressed "${event.key}".`); 
+	}
+
+	document.querySelector(".textbox").addEventListener("keydown", logKey);
+
+Arrow functions can be used to pass anonymous functions
+
+	document.querySelector(".textbox").addEventListener("keydown",
+	() => console.log(`You pressed "${event.key}".`)
+
+Arrow functions will return the value of it's code if it contains only one instruction. 
+
+
+	SCOPE
+
+    const x = 1;
+
+    function a() {
+    	const y = 2;
+    }
+
+    function b() {
+    	const z = 3;
+    }
+
+    function output(value) {
+    	const para = document.createElement('p');
+    	document.body.appendChild(para);
+    	para.textContent = `Value: ${value}`;
+    }
+
+Changes to argument variables passed into function are not reflected globally. 
+
+Changes to object properties made within the function are reflected globally,
+such as with: 
+	
+	function editMake(myObject) {	// created a function that take an object as
+	myObject.make = "toyota"; 	// as a parameter and assigns the [ make ]
+	}				// property of that object to "toyota"
+
+	const myCar = {			// creates a myCar object with 3 properties
+	make: "Honda", 			// one of which is [make], who's default value
+	model: "Accord", 		// is "Honda" 
+	year: 1998;
+	}
+
+	console.log(myCar.make)		// Would return "Honda"
+
+	editMake(myCar); 		// passes the myCar object to the editMake function
+					// which assigns the [make] property of it's argument
+	concole.log(myCar.make)		// resulting in this log to return "toyota"
+
+Similarly, values changed in an Array will be seen globally as well. 
+
+functions can be recursive (call themselves inside themselves) if they are given a name. 
+
+	const factorial = function fac(n) {
+    	return n < 2 ? 1 : n * fac(n - 1);
+  	}
+
+	console.log(factorial(10))
+
+	- or - 
+
+	function fac(n) {
+	return n < 2 ? 1 : n * fac(n-1)
+	}
+
+	console.log( fac(3) )
+
+
+[ while ] can be written as a recursive loop. For instance: 
+
+	let x = 0 
+	while (x < 10) {
+		//do stuff
+		x++
+	}
+
+is the same as writing 
+
+	function loop(x) {
+
+		if (x >=10) {
+		return
+		}
+
+		loop(x + 1) 
+	}
+
+	loop(0)
+	
 
 
