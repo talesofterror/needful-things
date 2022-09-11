@@ -704,24 +704,314 @@ functions can be recursive (call themselves inside themselves) if they are given
 
 [ while ] can be written as a recursive loop. For instance: 
 
-	let x = 0 
-	while (x < 10) {
-		//do stuff
-		x++
+	let x = 0		// create a variable to store the iterator 
+	while (x < 10) {	// while the iterator is less than 10...
+		//do stuff	// code
+		x++		// add 1 to x for that iteration
 	}
 
 is the same as writing 
 
-	function loop(x) {
+	function loop(x) {	// create a function that takes parameter x
 
-		if (x >=10) {
-		return
+		if (x >=10) {	// if x is less than or equal to 10
+		return		// get out of the function
 		}
 
-		loop(x + 1) 
+		loop(x + 1) 	// otherwise (no explicit else statement) add 1 to x
 	}
 
-	loop(0)
+	loop(0)			// call the function with parameter x starting at 0
+
+This creates a cal stack evident here: 
+
+	function foo(i) {
+	  if (i < 0) {
+	    return;
+	  }
+	  console.log(`begin: ${i}`);
+	  foo(i - 1);
+	  console.log(`end: ${i}`);
+	}
+	foo(3);
+
+	// Output:
+
+	// begin: 3
+	// begin: 2
+	// begin: 1
+	// begin: 0
+	// end: 0
+	// end: 1
+	// end: 2
+	// end: 3
 	
+
+
+	CLOSURES
+
+Functions can be placed within one another, creating a "closure" - The outer function can 
+take a parameter which the inner function can use itself. The inner function can take an
+entirely different parameter and do something with both. 
+
+	
+	function outside(x) {
+	  function inside(y) {
+	    return x + y;
+	  }
+	  return inside;
+	}
+	const fnInside = outside(3); // Think of it like: give me a function that 
+					adds 3 to whatever you give it
+	const result = fnInside(5); // returns 8
+	const result1 = outside(3)(5); // returns 8
+
+	// fnInside becomes a pointer for the inner function, itself loaded with the 
+	// x value of "3". Calling that container with another argument, "5", loads the 
+	// inner function with a value "5". x has been defined within the inside
+	// function by the outer function, meaning 8 is returned. 
+
+ 
+You can make a function that can functions as arguments. for instance: 
+	
+	function showMessage(from, text = anotherFunction()) {
+		[ code ]
+	}
+
+In the example above the detault value for [ text] is set to a function, but will
+only be called if no other argument value text is provided to the to the parameter 
+
+A function that has a parameter but is called with no function returns undefined. 
+You can set a conditional to check is the argument is undefined by saying 
+	
+	function (num){
+		if (num === undefined) {
+			console.log("argument undefined!")
+		}
+	}
+
+	
+	NULLISH COALESCING OPERATOR
+	
+writen as [ ?? ], as in 
+
+	a ?? b
+
+determined is a value is defined or undefined (null or undefined). 
+
+	a ?? b 
+
+	// if a is defined, return a
+	// if a isn't defined then b 
+
+	// aka, returns the first value that's not null or undefined. 
+
+In relations to the previous topic, the nullish coalescing operator can be used
+to determined if an argument has been defined or not, such as: 
+
+	let user
+	alert(user ?? "Anonymou)
+
+	// alert() will return the value for [ user ], unless that values is 
+	// null or undefined, in which case it returns the string "Anonymous" 
+
+
+	FUNCTION NAMING
+
+Functions usually do something, so it's best to start with a verb describing
+what the function does. 
+
+	showMessage() 
+	getAge() 
+	calcSum()
+	etc ...
+
+A function should do more than what it's name suggests, for instance a 
+function named getAge() shouldn't also display the age.
+
+
+
+TESTS 
+
+Write modify the function below to remove the if/else statements
+
+	function checkAge(age) {
+	    if (age > 18) {
+	        return true
+	    } else {
+	        return confirm("Did your parents allow you?")
+	    }
+	}
+
+	
+	// ternary version
+
+	let checkAge1 = (age) => {
+	    age > 18 ? true : confirm("Did your parents allow you?")
+	}
+
+	// OR version
+	
+	let checkAge2 = (age) => age > 18 || confirm("Did your parents allow you?")
+
+
+Write a function which returns the least of two numbers. 
+
+	let min = (a, b) => a > b ? b : a
+
+Write a function that returns [ x ] to the power of [ n ]. 
+
+	let pow = (x, n) => 
+		for (i = 0; i >= n; i++) {
+			x *= x
+		}
+
+	INCORRECT!! It should be: 
+
+	let pow = (x, n) => {
+	let result = x
+	for (i = 0; i < n; i++) {
+	        result *= x
+	    }
+	return result;
+	}
+
+	/*
+	pow(3, 2)
+	it takes a number in, x. assigns result to the original value of x, say 3
+	first iteration, i is 1. if i is less than 2, increment i by 1
+	i = 1
+	    result = 3
+	    3 * 3 = 9
+	    i = 2
+	i = 2
+	    exit
+	    return result 9
+
+	WHAT I WAS DOING (after edits, not my above original code):
+	i = 0
+	    result = 3
+	    3 * 3 = 9
+	    i = 1
+	i = 1
+	    result = 9
+	    9 * 3 = 27
+	    i = 2
+	i = 2
+	    exit
+	    return result 27
+	*/
+
+	
+	CALLBACK FUNCTIONS 
+
+Callback functions are functions passed as arguments to another function, executed
+as a result of some condition of the host function. 
+
+for example: 
+
+	function ask (question, yes, no) {
+	if (confirm(question)) yes()
+	else no()
+	
+	}
+
+	function showOk () {
+	alert ("Confirmed.")
+	}
+
+	function showCancelled () {
+	alert("Operation cancelled.")
+	}
+
+	ask("Confirm choice?", showOk, showCancelled). // entered as an argument without the parenthsis
+						       // called within the ask() function as yes()
+						       // and no()
+
+Callback function can be entered directly as an argument without being assigned a name. 
+
+	function ask(question, yes, no){
+		if (confirm(question)) yes() 
+		else no()
+	}
+
+	ask("Confirm choice?",
+		function () {alert("confirmed")}
+		function () {alert("denied")}
+
+
+	FUNCTION EXPRESSION VERSUS FUNCTION DELCARATION
+
+A function expression is declared: 
+
+	let funcName = function () { [ code ] }
+
+A function declaration is declared: 
+
+	function funcName() { [ code ]}
+
+The different between them is that a function declaration is placed in memory BEFORE 
+execution of the code, whereas a function expression can only be call once the execution
+reaches that line of code. This is why functions declations can be hoisted anywhere in the script, 
+where as function expressions can only be called after the line defining it is executed. 
+
+
+	ARROW FUNCTIONS
+
+Arrow functions are functions that are more concisely stated. 
+
+	let sum = (a, b) => a + b 
+
+	// assigns [ sum ] to a function that adds it's two parameters together. 
+	// sum() must be called in order for the function to exectute. 
+
+Arrow functions can be used in callbacks 
+
+	let age = prompt("How old are you?"); 
+
+	welcome = (age < 18) ? () => alert("too young!") : () => alert("come on in!")
+
+	welcome()
+
+	// This seems like a bad example they're giving me because alert() would be called
+	// regardless of whether it is an arrow function. Whatever. 
+
+	// interesting to note here is welcome(). It only contained a condition check
+	// but needs to be called as a function to work. Maybe because conditional statement 
+	// are functions by default. 
+
+Arrow functions utilizing one line need no curly braces {}. The value of the right hand 
+statment returns automatically. 
+
+Arrow function containing more than one line require the curcly braces plus the return 
+statement to return a value. 
+
+
+TASK 
+
+Replace function expressions with arrow functions in the code below. 
+
+	function ask(question, yes, no) {
+		if (confirm(question)) yes()
+		else no()
+	}
+
+	ask("Confirm choice?", 
+		function() {alert("confirmed"), 
+		function() {alert("denied")}
+	)
+
+	// 
+
+	let ask = (question, yes, no) => 
+		question ? yes() 
+		: no()
+
+	ask("confirm choice?", 
+		() => alert("confirmed."),
+		() => alert("denied.")
+	)
+
+	// correct. 
 
 
