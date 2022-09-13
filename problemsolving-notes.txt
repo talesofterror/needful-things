@@ -1,0 +1,156 @@
+A woman is eating cereal. 
+
+repetitve techniques: 
+
+	Iteration
+	&
+	Recursion
+
+Computers deal bets with repeating simple tasks over and over. 
+We use iterative and recursive techniques to break a complex problem down into a simpler
+pieces that can repeated as needed. 
+
+CEREAL EATING FOR REPETITIVE COMPUTATION 
+
+Assuming a computer knows how to take a bite of cereal, but doesn't know how to finish a bowl
+how do we create a program that can help it do that?  
+
+available methods: bite(). 
+
+make a variable for the amount of cereal left in the bowl. 
+set that variable to the amount of cereal in the bowl. 
+
+cerealLeft = ##
+if there is cereal in the bowl: 
+	bite() 
+	cerealLeft - 1
+if cerealLeft = 0
+	return
+
+We've deduced that the smallest non-zero amount of cereal can move at a time is a single bite. 
+It follows that eat two bites worth of cereal is equivalent to eating a single bite twice. 
+
+Now we must deduced a pattern. How does our original, complex problem (eating an entire bowl
+of cereal, compare with the simpler version? 
+
+	eating any amount of cereal is equivalent to the sum of eating 
+	multiple bites worth of cereal. 
+
+
+	GENERAL ITERATIVE FRAMEWORK FOR EATING A BOWL OF CEREAL
+
+	function EatCereal( amount ) {
+		while (problem is not solved) {
+		
+		perform simplest procedure
+
+		}
+	}
+
+
+	OR 
+
+	function EatCereal ( amount ) {
+		
+		if ( simplest case ) {
+		
+			solution for simplest case 
+		
+		}
+
+		else {
+		
+			divide into simpler case 
+			EatCereal( simpler case )
+
+		}
+
+	}
+
+		How do I solve the cereal problem using the OR case (recursive function)? 
+		
+		available methods: bite()
+
+		function bite () {
+			cerealLeft - 1
+		}
+
+		function eatCereal ( cerealLeft ) {
+		
+			if ( cerealLeft = 1 ) {
+		
+				bite()
+		
+			} else {
+			
+					
+
+			}
+		}
+
+		That's not the answer they gave. .. 
+
+
+	THE CEREAL HAS ALL BEEN EATEN
+
+Write a function that that prints a string multiple times, eahc time subtracting one 
+letter from the end of the string until there is only 1 letter left, then reprinting the 
+subtracted letter ones at a time. 
+
+	downup (string) {
+	
+	print( string)
+	print( string - 2 )
+	print( string - 1 )
+	print( string - 2 )
+	print( string )
+
+	}
+
+	for each string we are sandwiching the solution to a string one character shorter 
+	than the original string between two printings of the full string
+
+			function downup( string ) {
+			
+				if ( length == 1 ) {
+				
+					print string
+				}
+
+				else {
+					
+					print string 
+					downup( string - 1) 
+					print string
+				}
+			}
+	
+	The string enters intact. It passes through the first condition, is sent on to the 
+	else -- else prints the string, calls the function we're in with the argument
+	string - 1 letter, then prints the string again. 
+
+	That's where the magic happens actually, and it's the most confusing part.
+	How does the function know the current value of string if there's no variable 
+	keeping track of it? They mentioned something about a call stack.. 
+	
+	It's like each call of downup is stored in memory. 
+
+	I just thought it thorugh while looking at another article. The solution to each 
+	function call is in fact stored in something called a "local variable," which seems 
+	to mean somethin different to 
+
+	each time the function is called creates a local variable that is the value of
+	downup ( string - 1 ). Calling the function within itself means the next time the 
+	downup function is called it takes a parameter equal to the "local variable" 
+	created by the previous downup() call. A functin stack is created wherein each 
+	call of the function is waiting to complete exectution once the if condition is 
+	met. the if condition is set to the smallest version of the problem. the else 
+	statement is composed of the code to be executed as well as a recursive function
+	call that breaks the problem down one by one. 
+
+From what i've read recursion is more compact but potentiall less readable and more
+memory intensive than iterative solutions. 
+
+Which one to use seems to be up to personal preference. The vibe i'm getting is that
+most programmers consider recursion easier to read. I don't think I agree. 
+
