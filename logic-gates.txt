@@ -1,0 +1,28 @@
+
+LOGIC GATES. 
+
+
+	NAND
+
+	if both inputs are off, it is on
+	if either input is on, it is on
+	if both inputs are on, it is off
+
+
+	-	+	-	+
+	-	-	+	+
+	~~~~~~~~~~~~~~~~~~~~~~~~~
+	+	+	+	-
+
+
+	In our NOR exercise, 
+
+
+	You can get from any basic gate to any other, at most you have to NOT both inputs and output. 
+
+	You can go between OR/NOR by inverting output. The same goes for AND?NAND. In fact NOR means
+	NOT OR and NAND means NOT AND. Notice the component shape of OR/NOR are identical except for
+	the little got at the tip which means NOT. AND/NAND are also identical except for this dot. 
+
+	Negating the output glips all the bits in the last row of the truth table. Negating the inputs 
+	mirrors the last row of the truth table. 

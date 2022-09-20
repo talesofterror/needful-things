@@ -152,5 +152,53 @@ From what i've read recursion is more compact but potentiall less readable and m
 memory intensive than iterative solutions. 
 
 Which one to use seems to be up to personal preference. The vibe i'm getting is that
-most programmers consider recursion easier to read. I don't think I agree. 
+most programmers consider recursion easier to read. I don't think I agree.
 
+
+~
+
+TOWERS OF HANOI.  
+
+There's three pillars. All the rings must be transferred to the final pillar. You can only
+move a ring if it is unimpededed by a ring above it, and only to a pillar that is either
+empty or is not occupied by a larger ring. The rings are sized from biggest to smallest
+on the first ring. 
+
+	RINGS = 2
+	
+	move ring 1 one pillar up, 
+		then move the ring 2 to the third pillar
+	
+		or
+	
+	ring1 + 1
+	ring2 + 2
+	ring1 + 1
+
+	RINGS = 3 
+
+	Move ring1 +2 pillar
+	move ring2 +1 pillars 
+	move ring1 -1 pillar
+	move ring3 +2 pillars
+	move ring1 -1 pillar
+	move ring2 +1 pillar
+	move ring1 +2 pillars
+
+	
+	function hanoi ( moves )
+	for (r = 1; r < rings.length) {
+		
+	}
+
+	RINGS = 4
+
+
+
+numbers: 
+
+disks	moves	time
+1	1	1
+1	3	2	moves +2
+1	7	4	moves +4
+1	13	6	moves +6?
