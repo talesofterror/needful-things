@@ -1,0 +1,6 @@
+
+Math.imul(x,x) returns the value of the two parameters multiplied. 
+It can be used to return the numerical value of a base 16 hexdemical number
+
+let val3 = 0xf000001f, val4 = 1
+console.log(Math.imul(val3, val4))

@@ -193,12 +193,4 @@ on the first ring.
 
 	RINGS = 4
 
-
-
-numbers: 
-
-disks	moves	time
-1	1	1
-1	3	2	moves +2
-1	7	4	moves +4
-1	13	6	moves +6?
+	
