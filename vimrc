@@ -1,6 +1,7 @@
 set number
 set tabstop=4
 set laststatus=2
+set autoindent
 set statusline=%f "tail of the filename
 
 colorscheme elflord
@@ -8,6 +9,7 @@ syntax on
 
 runtime! ~/.vim/pack/plugins/start/lightline/autoload/lightline.vim
 runtime! ~/.vim/pack/vim-javascript/start/vim-javascript/syntax/javascript.vim
+runtime! ~/.vim/pack/syntastic/plugin/syntastic.vim
 
 map <C-j> <C-W>j
 map <C-k> <C-W>k
