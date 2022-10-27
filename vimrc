@@ -21,3 +21,12 @@ nnoremap gr gd[{V%::s/<C-R>///gc<left><left><left>
 
 " For global replace
 nnoremap gR gD:%s/<C-R>///gc<left><left><left>
+
+" lightline plugin stuff
+if !has('gui_running')
+  set t_Co=256
+endif
+
+let g:lightline = {
+	\	'colorscheme': 'powerline',
+	\   }
