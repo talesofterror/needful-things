@@ -3,6 +3,7 @@ set tabstop=4
 set laststatus=2
 set autoindent
 set statusline=%f "tail of the filename
+hi Normal ctermfg=white ctermbg=black
 
 colorscheme elflord
 syntax on
