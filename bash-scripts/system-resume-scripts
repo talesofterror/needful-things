@@ -1,0 +1,25 @@
+#!/usr/bin/env bash 
+action"=$1"
+
+case "$action" in 
+	suspend) 
+		# List of programs to run brefore the system suspends
+		# to ram; some folks call this "sleep" 
+		pacmd set-default-sink 15
+	;;
+	resume)
+		#List of programs to run when the system "resumes" 
+		# after being suspended
+		pacmd set-default-sink 15
+	;;
+	hibernate)
+		# List of programs to run before the system hibernates
+		# to disk; includes power-off, looks like shutdown
+		pacmd set-default-sink 15
+	;;
+	thaw)
+		# List of programs to run when the system wakes
+		# up from hibernation
+		pacmd set-default-sink 15
+	;;
+esac
