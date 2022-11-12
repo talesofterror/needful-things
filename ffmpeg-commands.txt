@@ -1,21 +1,21 @@
 
-USEFUL FFMPEG COMMANDS
+### USEFUL FFMPEG COMMANDS
 
 ~~~
 
-EXTRACT AUDIO FROM VIDEO 
+# EXTRACT AUDIO FROM VIDEO 
 
 ffmpeg -i input-video.avi -vn -acodec copy output-audio.aac 
 
 **
 
-REPLACE AUDIO IN VIDEO
+# REPLACE AUDIO IN VIDEO
 
 ffmpeg -i v.mp4 -i a.wav -c:v copy -map 0:v:0 -map 1:a:0 new.mp4
 
 **
 
-REMOVE AUDIO FROM FILE
+# REMOVE AUDIO FROM FILE
 
 ffmpeg -i in -c copy -an out
 	Take a video [in], copies it's content and skips the inclusion of the audio
@@ -23,13 +23,33 @@ ffmpeg -i in -c copy -an out
 
 **
 
-SAVE FRAMES TO FILE
+# SAVE FRAMES TO FILE
 
 ffmpeg -i <filename>_%04d.png <newfilename>.gif 
 
 **
 
-CONCAT FRAMES IN REVERSE
+# SAVE FRAME TO FILE STARTING FROM A CERTAIN FRAME NUMBER
+
+ffmpeg -start_number 1 -framerate 25 -i [in] [o]
+
+	This uses something called the image2_demuxer. the -start_number is mandatory
+	Input can only be a series of images from what I can tell. 
+
+**
+
+# CONCAT A SERIES OF FILES TOGETHER
+
+cat file.txt
+file 'file1'
+file 'file2'
+	[etc]
+
+ffmpeg -f concat -safe 0 -i [in] -c copy [out]
+
+**
+
+# CONCAT FRAMES IN REVERSE
 
 	- for a video with no audio, do:
 
@@ -44,7 +64,7 @@ ffmpeg -i in -filter_complex "[0:v]reverse,fifo[r];[0:v][0:a][r] [0:a]
 
 **
 
-SAVE GIF WITH PALLETE, AT 20 FRAMES PER SECOND
+# SAVE GIF WITH PALLETE, AT 20 FRAMES PER SECOND
 
 ffmpeg -i input.gif -vf "fps=20,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" output.gif
 	- change to "paletteuse=dither=<dithering type>" 
@@ -58,7 +78,7 @@ ffmpeg -i input.gif -vf "fps=20,split[s0][s1];[s0]palettegen[p];[s1][p]paletteus
 
 **
 
-CLIPPING A VIDEO AT CERTAIN TIMES (COPIED FROM STACK OVERFLOW, USER RGOV)
+# CLIPPING A VIDEO AT CERTAIN TIMES (COPIED FROM STACK OVERFLOW, USER RGOV)
 
 ffmpeg -ss 30 -i input.wmv -c copy -t 10 output.wmv
 	In the above command, the timestamps are in seconds (s.msec), but 
@@ -80,7 +100,7 @@ ffmpeg -ss 00:00:30.0 -i input.wmv -c copy -t 00:00:10.0 output.wmv
 
 **
 
-OFFSET FRAMES TO MAINTAIN SEAMLESS LOOP 
+# OFFSET FRAMES TO MAINTAIN SEAMLESS LOOP 
 
 ffmpeg -i in -vf "split=2[a][b];[a]trim=start_frame=20,setpts=N/FR/TB[a];
 [b]trim=end_frame=20,setpts=N/FR/TB[b];[a][b]concat" out
@@ -88,7 +108,7 @@ ffmpeg -i in -vf "split=2[a][b];[a]trim=start_frame=20,setpts=N/FR/TB[a];
 
 **
 
-SAVE IMAGES WITH ALPHA USING ALPHA CAPABLE VIDEO CODEC (AVI)
+# SAVE IMAGES WITH ALPHA USING ALPHA CAPABLE VIDEO CODEC (AVI)
 
 ffmpeg -i in -vcodec qtrle out.mov
 ffmpeg -i in -vcodec ffvhuff out.avi
