@@ -1,0 +1,3 @@
+CLEAR CACHE (In the event of a "Forbidden" error)
+
+	youtube-dl.exe --rm-cache-dir

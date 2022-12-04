@@ -29,6 +29,22 @@ ffmpeg -i <filename>_%04d.png <newfilename>.gif
 
 **
 
+# SET VIDEO BITRATE (Video and audio)
+# 	(could remedy twitter compatability issues)
+
+ffmpeg -i in -b:v 25M -b:a 128k out
+
+**
+
+**
+
+# SET VIDEO PROFILE
+#	(could also remedy twitter compatability issues, but less likely)
+
+ffmpeg -i in -profile:v high -level:v 4.0 out
+
+**
+
 # SAVE FRAME TO FILE STARTING FROM A CERTAIN FRAME NUMBER
 
 ffmpeg -start_number 1 -framerate 25 -i [in] [o]
