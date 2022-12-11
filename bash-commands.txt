@@ -1,0 +1,4 @@
+
+# COPY A RANGE OF NUMBERED FILES
+
+cp prefixtext{75..83}.png ~/Directory
