@@ -1,0 +1,13 @@
+Pulseaudio is configurable. To find out, which sources you have you could issue:
+
+pactl list short sinks
+
+Then you might get something like:
+
+alsa_output.pci-0000_00_1b.0.analog-stereo  module-alsa-card.c  s16le 2ch 44100Hz   SUSPENDED s16le 2ch 44100Hz SUSPENDED
+
+To set a certain output as default (your choice from the list above):
+
+pacmd set-default-sink alsa_output.pci-0000_00_1b.0.analog-stereo
+
+To persist it put that line into /etc/pulse/default.pato have it across reboots
