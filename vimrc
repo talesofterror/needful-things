@@ -3,15 +3,14 @@ set tabstop=2
 set shiftwidth=2
 set laststatus=2
 set autoindent
-set statusline=%f "tail of the filename
-hi Normal ctermfg=white ctermbg=black
 
 colorscheme elflord
 syntax on
 
 runtime! ~/.vim/pack/plugins/start/lightline/autoload/lightline.vim
-runtime! ~/.vim/pack/vim-javascript/start/vim-javascript/syntax/javascript.vim
-runtime! ~/.vim/pack/syntastic/plugin/syntastic.vim
+runtime! ~/.vim/pack/plugins/start/vim-javascript/syntax/javascript.vim
+" runtime! ~/.vim/pack/plugins/start/syntastic/syntastic.vim
+runtime! ~/.vim/pack/plugins/start/ale/plugin/ale.vim
 
 map <C-j> <C-W>j
 map <C-k> <C-W>k
