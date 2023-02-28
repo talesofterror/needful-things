@@ -12,6 +12,10 @@ runtime! ~/.vim/pack/plugins/start/vim-javascript/syntax/javascript.vim
 " runtime! ~/.vim/pack/plugins/start/syntastic/syntastic.vim
 runtime! ~/.vim/pack/plugins/start/ale/plugin/ale.vim
 
+execute pathogen#infect()
+syntax on
+filetype plugin indent on
+
 map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
