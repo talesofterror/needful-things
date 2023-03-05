@@ -1,0 +1,124 @@
+
+START NON-PRINTABLE INPUT: 		\[
+END:													\]
+
+BEGIN COLOR CHANGES:		\e[
+SPECIFY COLOR CODE: 		0;03m
+EXIT COLOR CHANGE:			\e[0m
+
+COLORS: 
+
+-COLOR-				-FOREGROUND CODE-				-BACKGROUND CODE-
+Black								30											40
+Red									31											41
+Green								32											42
+Yellow							33											43
+Blue								34											44
+Magenta							35											45
+Cyan								36											46
+Light Gray					37											47
+Gray								90											100
+Light Red						91											101
+Light Green					92											102
+Light Yellow				93											103
+Light Blue					94											104
+Light Magenta				95											105
+Light Cyan					96											106
+White								97											107
+
+
+TEXT DECORATION
+
+0 - Reset / Normal
+1 - Bold Text
+2 - Faint Text
+3 - Italics
+4 - Underline
+
+
+
+\a
+A bell character.
+
+\d
+The date, in "Weekday Month Date" format (e.g., "Tue May 26").
+
+\D{format}
+The format is passed to strftime(3) and the result is inserted into the prompt string; an empty format results in a locale-specific time representation. The braces are required.
+
+\e
+An escape character.
+
+\h
+The hostname, up to the first ‘.’.
+
+\H
+The hostname.
+
+\j
+The number of jobs currently managed by the shell.
+
+\l
+The basename of the shell’s terminal device name.
+
+\n
+A newline.
+
+\r
+A carriage return.
+
+\s
+The name of the shell, the basename of $0 (the portion following the final slash).
+
+\t
+The time, in 24-hour HH:MM:SS format.
+
+\T
+The time, in 12-hour HH:MM:SS format.
+
+\@
+The time, in 12-hour am/pm format.
+
+\A
+The time, in 24-hour HH:MM format.
+
+\u
+The username of the current user.
+
+\v
+The version of Bash (e.g., 2.00)
+
+\V
+The release of Bash, version + patchlevel (e.g., 2.00.0)
+
+\w
+The value of the PWD shell variable ($PWD), with $HOME abbreviated with a tilde (uses the $PROMPT_DIRTRIM variable).
+
+\W
+The basename of $PWD, with $HOME abbreviated with a tilde.
+
+\!
+The history number of this command.
+
+\#
+The command number of this command.
+
+\$
+If the effective uid is 0, #, otherwise $.
+
+\nnn
+The character whose ASCII code is the octal value nnn.
+
+\\
+A backslash.
+
+\[
+Begin a sequence of non-printing characters. This could be used to embed a terminal control sequence into the prompt.
+
+\]
+End a sequence of non-printing characters.
+
+
+CONTROLLING STARTUP
+
+Bash examines the value of the array variable PROMPT_COMMAND just before printing each primary prompt. If any elements in PROMPT_COMMAND are set and non-null, Bash executes each value, in numeric order, just as if it had been typed on the command line.
