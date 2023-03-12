@@ -29,12 +29,9 @@ ffmpeg -i <filename>_%04d.png <newfilename>.gif
 
 **
 
-# SET VIDEO BITRATE (Video and audio)
-# 	(could remedy twitter compatability issues)
+# CHANGE VIDEO CODEC TO LIBX264 (TWITTER COMPATIBLE?)
 
-ffmpeg -i in -b:v 25M -b:a 128k out
-
-**
+ffmpeg -i input.mp4 -vcodec libx264 -crf 28 output.mp4
 
 **
 
