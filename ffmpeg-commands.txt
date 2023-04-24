@@ -82,6 +82,7 @@ ffmpeg -i in -filter_complex "[0:v]reverse,fifo[r];[0:v][0:a][r] [0:a]
 ffmpeg -i input.gif -vf "fps=20,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" output.gif
 	- change to "paletteuse=dither=<dithering type>" 
 	- change to "palettegen=max_colors=5"
+	- Use : (colon) to add more than one parameter to palette functions
 	- this example uses -vf, which I'm pretty sure stands for "videofilter" 
 		which uses a string to set properties of the videofilter
 	- splits the workload into two streams within videofilter: [s0] and [s1]
