@@ -83,13 +83,23 @@ ffmpeg -i input.gif -vf "fps=20,split[s0][s1];[s0]palettegen[p];[s1][p]paletteus
 	- change to "paletteuse=dither=<dithering type>" 
 	- change to "palettegen=max_colors=5"
 	- Use : (colon) to add more than one parameter to palette functions
+	- to reach 2 colors delete transparency channel: reserve_transparent=0:stats_mode=single
+		after paletteuse
 	- this example uses -vf, which I'm pretty sure stands for "videofilter" 
 		which uses a string to set properties of the videofilter
 	- splits the workload into two streams within videofilter: [s0] and [s1]
 	- [s0] calls the "palettegen" command and sends it to [p]
 	- [s1] takes the [p] value and puts it into the "paletteuse" command
-	- "paletteuse" normally called by using the -lavfi flag, which I know nothing of 
-	- complicated command that I don't fully understand
+	- "paletteuse" normally called by using the -lavfi flag, which I know nothing of
+
+
+	Have gotten good 2-4 color dither results with the following command:
+		ffmpeg -i input.mp4 -vf "split=[s0][s1];[s0]palettegen=max_colors=2
+		:reserve_transparent=0:stats_mode=diff[p];[s1][p]paletteuse=dither=floyd_steinberg" 
+		output.gif
+
+	Dithering works best when using a 0 crf mp4
+
 
 **
 
