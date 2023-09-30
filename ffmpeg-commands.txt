@@ -29,16 +29,9 @@ ffmpeg -i <filename>_%04d.png <newfilename>.gif
 
 **
 
-# CHANGE VIDEO CODEC TO LIBX264 (TWITTER COMPATIBLE?)
+# CHANGE VIDEO CODEC TO LIBX264 (TWITTER COMPATIBLE)
 
-ffmpeg -i input.mp4 -vcodec libx264 -crf 28 output.mp4
-
-**
-
-# SET VIDEO PROFILE
-#	(could also remedy twitter compatability issues, but less likely)
-
-ffmpeg -i in -profile:v high -level:v 4.0 out
+ffmpeg -i input.mp4 -vf format=yuv420p -vcodec libx264 -crf 28 output.mp4
 
 **
 
