@@ -51,6 +51,12 @@ ffmpeg -start_number 1 -framerate 25 -i [in] [o]
 
 **
 
+# SAVE FRAME TO FILE STOPPING AT A CERTAIN FRAME NUMBER 
+
+ffmpeg -i input_%04d.png -frames:v 100 output.mp4
+
+**
+
 # CONCAT A SERIES OF FILES TOGETHER
 
 cat file.txt
