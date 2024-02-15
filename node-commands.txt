@@ -1,0 +1,2 @@
+node -i -e "$(< [FILENAME].js)"
+	// open a node REPL with [FILENAME] preloaded 
