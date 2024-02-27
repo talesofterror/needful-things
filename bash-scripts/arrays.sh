@@ -1,4 +1,7 @@
 #bin/bash
+#
+# using https://opensource.com/article/18/5/you-dont-know-bash-intro-bash-arrays
+# left off on "What else you got?" 
 
 array1=("a" "b" "c" "d")
 
