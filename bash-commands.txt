@@ -2,3 +2,21 @@
 # COPY A RANGE OF NUMBERED FILES
 
 cp prefixtext{75..83}.png ~/Directory
+
+# call a function within a bash script from command line 
+
+bash -c "source [script name]; [function name] [arg] [arg]"
+
+# variables 
+
+echo 1. name of shell or script: $0
+echo 2. PID of this script: $$
+echo 3. Array-ish construct of parameters: $@
+echo 4. IFS expansion of all positional parameters $*
+echo 5. There are $# arguments
+echo 6. Argument 1 is $1
+echo 7. Argument 2 is $2
+echo 8. Most recent parameter: $_
+echo 9. options active: $-
+echo 10. Most recent foreground pipeline exit status: $?
+echo 11. PID of the most recent background command: $!
