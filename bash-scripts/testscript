@@ -3,7 +3,7 @@
 arg1=$1
 arg2=$2
 
-set -v
+set 
 
 thing () {
 	echo 1. name of shell or script: $0
