@@ -1,0 +1,3 @@
+## convert tga to png with all the particulars (plus resize)
+
+magick mogrify -format png -alpha on -define tga:alpha=use -define tga:bits-per-pixel=32 -auto-orient -resize 50% *.tga

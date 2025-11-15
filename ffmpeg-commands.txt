@@ -136,6 +136,12 @@ ffmpeg -ss 00:00:30.0 -i input.wmv -c copy -t 00:00:10.0 output.wmv
 
 **
 
+# CLIP END OF VIDEO n SECONDS
+
+ffmpeg -sseof -7 -i input.mp4 -c copy output.mp4 
+
+**
+
 # OFFSET FRAMES TO MAINTAIN SEAMLESS LOOP 
 
 ffmpeg -i in -vf "split=2[a][b];[a]trim=start_frame=20,setpts=N/FR/TB[a];
@@ -150,3 +156,6 @@ ffmpeg -i in -vcodec qtrle out.mov
 ffmpeg -i in -vcodec ffvhuff out.avi
 ffmpeg -i in -vcodec huffyyuv out.avi
 	Seems to work
+
+
+
