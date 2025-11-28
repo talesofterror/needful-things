@@ -1,0 +1,2 @@
+{Final Prediction } (N) = {Baseline Prediction } (U) + {Guidance Multiplier } (W) * {Prompt Specificity } (P - U)
+(P - U) --> Prompt (Conditional Prediction) - Unconditional Prediction (U) --> direction of change in denoising process

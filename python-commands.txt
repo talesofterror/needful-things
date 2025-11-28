@@ -1,0 +1,5 @@
+# Create a new environment using Python 3.10
+# You can then install dependencies to this .env310 directory when you're done with it. 
+py -3.10 -m venv .env310
+
+
