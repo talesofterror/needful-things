@@ -1,3 +1,11 @@
 ## convert tga to png with all the particulars (plus resize)
 
 magick mogrify -format png -alpha on -define tga:alpha=use -define tga:bits-per-pixel=32 -auto-orient -resize 50% *.tga
+
+## resize images with new filenames
+
+magick *.png -resize 50% -set filename:f "%t_resize" "%[filename:f].png"
+
+## resize images from file that lists the images
+
+magick @images.txt -resize 50% -set filename:f "%t_resize" "%[filename:f].png"
