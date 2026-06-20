@@ -9,3 +9,25 @@ magick *.png -resize 50% -set filename:f "%t_resize" "%[filename:f].png"
 ## resize images from file that lists the images
 
 magick @images.txt -resize 50% -set filename:f "%t_resize" "%[filename:f].png"
+
+## parameters (single dashes)
+
+-quality 80
+	set the quality
+
+-strip
+	strip metadata
+
+-interlace Plane
+	use progressive renderings (interlacing)
+
+-sampling-factor 4:2:0
+	set chroma resampling
+
+# glitching
+
+Image Slicing
+	magick input.jpg -roll +40+0 -region 100x200+0+150 -roll -60+0 output.jpg
+
+
+
