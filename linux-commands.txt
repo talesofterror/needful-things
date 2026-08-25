@@ -1,1 +1,7 @@
-journalctl -b -1 -e
+## log from end of last session
+	journalctl -b -1 -e
+
+## 
+list files according to size, including directories
+	du -ah --max-depth=1 | sort -hr
+
