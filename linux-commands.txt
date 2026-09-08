@@ -5,3 +5,10 @@
 list files according to size, including directories
 	du -ah --max-depth=1 | sort -hr
 
+
+## KDE
+
+## restart plasmashell
+	systemctl restart --user plasma-plasmashell
+
+
