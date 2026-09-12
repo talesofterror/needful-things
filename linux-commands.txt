@@ -5,6 +5,12 @@
 list files according to size, including directories
 	du -ah --max-depth=1 | sort -hr
 
+## log gz log to terminal
+	zcat <file>
+
+## log a long gz log to terminal 
+	zless <file>
+
 
 ## KDE
 
