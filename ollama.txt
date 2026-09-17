@@ -1,0 +1,47 @@
+### SET
+
+# turn on runtime metrics / inference stats
+	/set verbose
+
+# turns off performance stats
+	/set noverbose
+
+# enables or disables saving prompt history for session
+	/set history || /set nohistory
+
+### PARAMETERS
+
+# set temperature
+# lower for deterministic, higher for creative
+	/set parameter temperature <value btw 0 and 1>
+
+# change active context window size in tokens 
+# keep below 8192 for 3070
+	/set parameter num_ctx 8192
+
+# limit the max number of output tokens generated in a single response
+	/set parameter num_predict 512
+
+# set a sequence to stop generation
+	/set parameter stop "```"
+
+# adjust penalty for repeating words or phrases
+	/set parameter repeat penalty 1.1
+
+### SHOW
+
+# show current system prompt / persona
+	/show system
+
+# show active parameters
+	/show parameters
+
+# /show underlying ChatML/prompt wrapper used to structure messages
+	/show template
+
+# the complete raw ModelFile configuration used to build the loaded model
+	/show modelfile
+
+# show the legal license
+	/show license
+

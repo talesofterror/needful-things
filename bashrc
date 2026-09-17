@@ -130,3 +130,14 @@ export PATH=$PATH:$HOME/.dotnet
 # initialize starship prompt prettifier
 eval "$(starship init bash)"
 
+# report cwd to via OSC 7 (operating system command 7)
+function prompt_command() {
+    printf "\e]7;file://%s%s\a" "$HOSTNAME" "$PWD"
+}
+PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND; }prompt_command"
+
+# ollama install variables
+export PATH="/mnt/DATA2/ollama/installation/bin:$PATH"
+export LD_LIBRARY_PATH="/mnt/DATA2/ollama/installation/lib/ollama:$LD_LIBRARY_PATH"
+export OLLAMA_MODELS="/mnt/DATA2/ollama/models/"
+

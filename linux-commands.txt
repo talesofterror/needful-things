@@ -17,4 +17,6 @@ list files according to size, including directories
 ## restart plasmashell
 	systemctl restart --user plasma-plasmashell
 
+# compress PDF with ghostscript
+	gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/ebook -dNOPAUSE -dQUIET -dBATCH -sOutputFile=output.pdf input.pdf
 
