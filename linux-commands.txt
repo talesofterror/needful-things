@@ -11,6 +11,9 @@ list files according to size, including directories
 ## log a long gz log to terminal 
 	zless <file>
 
+## live log
+	journalctl -p err -f
+
 
 ## KDE
 
