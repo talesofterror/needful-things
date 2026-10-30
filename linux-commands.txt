@@ -1,25 +1,39 @@
-## log from end of last session
+
+## GENERAL
+
+# log from end of last session
 	journalctl -b -1 -e
 
-## 
-list files according to size, including directories
+# list files according to size, including directories
 	du -ah --max-depth=1 | sort -hr
 
-## log gz log to terminal
+# log gz log to terminal
 	zcat <file>
 
-## log a long gz log to terminal 
+# log a long gz log to terminal 
 	zless <file>
 
-## live log
+# live log
 	journalctl -p err -f
 
+## X11
+
+# kill a program by window
+	xkill
 
 ## KDE
 
-## restart plasmashell
+# restart plasmashell
 	systemctl restart --user plasma-plasmashell
+
+# kill a program by window
+	<Ctrl>+<Meta>+<Esc>
+
+
+## PRODUCTIVITY
 
 # compress PDF with ghostscript
 	gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/ebook -dNOPAUSE -dQUIET -dBATCH -sOutputFile=output.pdf input.pdf
 
+# convert the input pdf to docx
+	pdf2docx convert input.pdf output.pdf
